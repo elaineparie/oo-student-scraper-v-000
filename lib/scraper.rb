@@ -43,18 +43,22 @@ end
 
   quote = doc.css(".profile-quote").text
   bio = doc.css("p").text
-
- if each_link.include? ("twitter")
-  hash[:twitter] = each_link[0]
+each_link.collect do |link|
+ if link.include? ("twitter")
+  hash[:twitter] = link
+elsif link.include?("github")
+  hash[:github] = link
+elsif link.include?("linkedin")
+  hash[:linkedin] = link
+else
+  hash[:blog] = link
+  end
 end
-  each_link.include?("github")
-  hash[:github] = each_link[2]
 
-
-  hash[:blog] = each_link[3]
+#  hash[:blog] = each_link[3]
   hash[:profile_quote] = quote
   hash[:bio] = bio
-  hash[:linkedin] = each_link[1]
+#  hash[:linkedin] = each_link[1]
 
     hash
 
